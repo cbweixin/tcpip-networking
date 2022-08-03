@@ -23,11 +23,13 @@ int main(int argc, char *argv[]) {
         printf("Usage : %s <port>\n", argv[0]);
         exit(1);
     }
+    // step 1: create socket
     server_sock = socket(PF_INET, SOCK_STREAM, 0);
     if (server_sock == -1) {
         error_handling("socket() error");
     }
     memset(&serv_addr, 0, sizeof(serv_addr));
+    // step 2 : bind address and port
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
     serv_addr.sin_port = htons(atoi(argv[1]));
@@ -35,16 +37,20 @@ int main(int argc, char *argv[]) {
         error_handling("bind() error");
     }
 
+    // step 3 : start listening
     if (listen(server_sock, 5) == -1) {
         error_handling("listen() error");
     }
 
     clnt_addr_size = sizeof(clnt_addr);
+    // step 4 : accepting request
     client_sock = accept(server_sock, (struct sockaddr *) &clnt_addr, &clnt_addr_size);
     if (client_sock == -1) {
         error_handling("accept() error");
     }
 
+    // now connection established, we can
+    // step 5: write response
     write(client_sock, message, sizeof(message));
     close(client_sock);
     close(server_sock);
