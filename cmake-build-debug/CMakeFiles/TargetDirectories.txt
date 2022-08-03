@@ -1,0 +1,3 @@
+/Users/xin.wei/github-personal/tcpip-networking/cmake-build-debug/CMakeFiles/tcpip_networking.dir
+/Users/xin.wei/github-personal/tcpip-networking/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/xin.wei/github-personal/tcpip-networking/cmake-build-debug/CMakeFiles/rebuild_cache.dir
