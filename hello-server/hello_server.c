@@ -33,6 +33,9 @@ int main(int argc, char *argv[]) {
     memset(&serv_addr, 0, sizeof(serv_addr));
     // step 2 : bind address and port
     serv_addr.sin_family = AF_INET;
+    // INADDR_ANY, constant number, automatically retrieve the server ip, no need to manually input
+    // even if the server has multiple ip, such as router, if the port is correct, then client could use any ip
+    // to communicate
     serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
     serv_addr.sin_port = htons(atoi(argv[1]));
     if (bind(server_sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
