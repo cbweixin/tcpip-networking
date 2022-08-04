@@ -43,6 +43,7 @@ int main(int argc, char *argv[]) {
     }
 
     // step 3 : start listening
+    // 5 - backlog, ie, 请求等待队列
     if (listen(server_sock, 5) == -1) {
         error_handling("listen() error");
     }
