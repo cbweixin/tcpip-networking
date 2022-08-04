@@ -24,6 +24,8 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
     // step 1: create socket
+    // PF_INET IPV4, one of Protocl Family
+    // SOCK_STREAM 面向连接的套接字
     server_sock = socket(PF_INET, SOCK_STREAM, 0);
     if (server_sock == -1) {
         error_handling("socket() error");
