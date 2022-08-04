@@ -3,4 +3,4 @@ project(tcpip_networking C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(tcpip_networking main.c hello-server/hello_server.c hello-server/hello_client.c hello-server/endian_conv.c hello-server/inet_addr.c)
+add_executable(tcpip_networking main.c hello-server/hello_server.c hello-server/hello_client.c hello-server/endian_conv.c hello-server/inet_addr.c hello-server/inet_aton.c hello-server/inet_ntoa.c)
