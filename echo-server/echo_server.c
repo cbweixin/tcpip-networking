@@ -52,6 +52,7 @@ int main(int argc, char *argv[]) {
         }
 
         while ((str_len = read(clnt_sock, message, BUF_SIZE)) != 0) {
+            printf("message from client %s \n", message);
             write(clnt_sock, message, str_len);
         }
         close(clnt_sock);
