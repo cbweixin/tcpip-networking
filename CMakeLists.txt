@@ -14,4 +14,4 @@ add_executable(
         echo-server/echo_server.c
         echo-server/echo_client.c
         echo-server/echo_client_enhanced.c
-        calc-server/op_client.c)
+        calc-server/op_client.c calc-server/op_server.c)
