@@ -6,6 +6,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <netinet/in.h>
+#include <arpa/inet.h>
 
 #define BUF_SIZE 1024
 
@@ -15,6 +16,7 @@ int main(int argc, char *argv[]) {
     int sock, str_len;
     char message[BUF_SIZE];
     struct sockaddr_in serv_adr;
+    int recv_len, recv_cnt;
 
     if (argc != 3) {
         printf("Usage : %s <IP> <PORT> \n", argv[0]);
