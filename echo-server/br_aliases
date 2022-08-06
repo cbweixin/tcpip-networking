@@ -1,0 +1,4 @@
+#command alias bfl breakpoint set -f %1 -l %2
+command alias bfl breakpoint set -l %1
+command alias bfn breakpoint set -n %1
+#bfn minCut

@@ -3,10 +3,9 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
-#include <netinet/in.h>
 #include <string.h>
-#include <arpa/inet.h>
 #include <unistd.h>
+#include <netinet/in.h>
 
 #define BUF_SIZE 1024
 
@@ -45,7 +44,7 @@ int main(int argc, char *argv[]) {
             break;
         }
         write(sock, message, BUF_SIZE - 1);
-        str_len = read(sock, message, strlen(message));
+        str_len = read(sock, message, BUF_SIZE - 1);
         message[str_len] = 0;
         printf("Mesage from server: %s \n", message);
 
