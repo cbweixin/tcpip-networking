@@ -49,6 +49,7 @@ int main(int argc, char *argv[]) {
         if (read_len == -1) {
             error_handling("read() error");
         }
+        // call read multiple times, each read one char
         str_len += read_len;
     }
 
