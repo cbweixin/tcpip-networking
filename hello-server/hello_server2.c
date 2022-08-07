@@ -59,7 +59,8 @@ int main(int argc, char *argv[]) {
     // step 5: write response
     int idx = 0;
     while (idx < strlen(message)) {
-        write(client_sock, (char *) &message[idx++], sizeof(message[idx - 1]));
+//        write(client_sock, (char *) &message[idx++], sizeof(message[idx - 1]));
+        write(client_sock, message + (idx++), sizeof(message[idx - 1]));
     }
     close(client_sock);
     close(server_sock);
