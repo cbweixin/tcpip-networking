@@ -11,6 +11,7 @@ add_executable(
         hello-server/inet_addr.c
         hello-server/inet_aton.c
         hello-server/inet_ntoa.c
+        hello-server/hello_server2.c
         echo-server/echo_server.c
         echo-server/echo_client.c
         echo-server/echo_client_enhanced.c
