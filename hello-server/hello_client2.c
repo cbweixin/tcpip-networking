@@ -38,7 +38,14 @@ int main(int argc, char *argv[]) {
         error_handling("connect() error!");
     }
 
-    while (read_len = read(sock, &message[idx++], 1)) {
+    // hello_client2.c:41:21: warning: using the result of an assignment as a condition without parentheses [-Wparentheses]
+    //    while (read_len = read(sock, &message[idx++], 1)) {
+    //           ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //hello_client2.c:41:21: note: place parentheses around the assignment to silence this warning
+    //    while (read_len = read(sock, &message[idx++], 1)) {
+    //                    ^
+    //           (                                        )
+    while ((read_len = read(sock, &message[idx++], 1))) {
         if (read_len == -1) {
             error_handling("read() error");
         }
