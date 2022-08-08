@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
         scanf("%d", (int *) &opmsg[i * OPSZ + 1]);
     }
     // remove '\n' in buffer
-    fgetc(stdin);
+//    fgetc(stdin);
     fputs("Operator: ", stdout);
     scanf("%c", &opmsg[opnd_cnt * OPSZ + 1]);
     write(sock, opmsg, opnd_cnt * OPSZ + 2);
