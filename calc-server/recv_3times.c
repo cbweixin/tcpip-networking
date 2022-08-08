@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
     }
 
     for (int i = 0; i < 3; i++) {
-        ssize_t read_len = read(sock, (char *) (&strlen), 4);
+        ssize_t read_len = read(sock, (char *) (&str_len), 4);
         if (read_len == -1) {
             error_handling("read() error!");
         }

@@ -24,6 +24,7 @@ int main(int argc, char *argv[]) {
     char msg3[] = "Nice to meet you.";
     char *str_arr[] = {msg1, msg2, msg3};
     char read_buf[100];
+    int str_len;
 
     char message[] = "hello world!";
     if (argc != 2) {
@@ -67,9 +68,9 @@ int main(int argc, char *argv[]) {
 
     int i;
     for (i = 0; i < 3; i++) {
-        size_t str_len = strlen(str_arr[i]) + 1;
+        str_len = strlen(str_arr[i]) + 1;
         write(client_sock, (char *) (&str_len), 4);
-        write(client_sock, str_arr + i, str_len);
+        write(client_sock, str_arr[i], str_len);
 
         read(client_sock, (char *) (&str_len), 4);
         read(client_sock, read_buf, str_len);
