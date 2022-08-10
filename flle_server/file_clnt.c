@@ -16,9 +16,10 @@ void error_handling(char *message);
 int main(int argc, char *argv[]) {
     int sock;
     struct sockaddr_in serv_addr;
-    int str_len, read_cnt;
+    int read_cnt;
 
     char read_buf[BUF_SIZE];
+    char file_name[BUF_SIZE];
 
     if (argc != 3) {
         printf("Usage : %s <IP> <Port>\n", argv[0]);
@@ -40,8 +41,8 @@ int main(int argc, char *argv[]) {
     }
 
     printf("Input file name : ");
-    char *file_name = NULL;
     scanf("%s", file_name);
+    printf("%s\n", file_name);
     FILE *fp = fopen(file_name, "wb");
     // send file name to server
     write(sock, file_name, strlen(file_name) + 1);

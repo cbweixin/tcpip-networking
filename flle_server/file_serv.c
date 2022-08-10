@@ -73,8 +73,10 @@ int main(int argc, char *argv[]) {
 //    char *file_name;
     // get file_name
 //    strcpy(file_name, read_buf);
+    printf("%s\n", file_name);
     fp = fopen(file_name, "rb");
     if (fp != NULL) {
+        printf("get the file\n");
         while (1) {
             // read BUF_SIZE(100) bytes each time
             size_t read_cnt = fread((void *) read_buf, 1, BUF_SIZE, fp);
@@ -85,6 +87,8 @@ int main(int argc, char *argv[]) {
             }
             write(client_sock, read_buf, BUF_SIZE);
         }
+    } else {
+        printf("failed to find the file...");
     }
     fclose(fp);
     close(client_sock);

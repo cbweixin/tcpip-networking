@@ -50,11 +50,11 @@ int main(int argc, char *argv[]) {
         scanf("%d", (int *) &opmsg[i * OPSZ + 1]);
     }
     // remove '\n' in buffer
-    //    fgetc(stdin);
     // The scanf() function skips leading whitespace automatically before trying to parse conversions other than
     // characters. The character formats (primarily %c; also scan sets %[…] — and %n) are the exception; they don't skip
     // whitespace.
     // https://stackoverflow.com/questions/5240789/scanf-leaves-the-newline-character-in-the-buffer
+    fgetc(stdin);
     fputs("Operator: ", stdout);
     scanf("%c", &opmsg[opnd_cnt * OPSZ + 1]);
     write(sock, opmsg, opnd_cnt * OPSZ + 2);
