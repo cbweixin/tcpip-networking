@@ -24,6 +24,7 @@ int main(int argc, char *argv[]) {
     socklen_t clnt_addr_size;
 
     char read_buf[BUF_SIZE];
+    char file_name[BUF_SIZE];
 
     if (argc != 2) {
         printf("Usage : %s <port>\n", argv[0]);
@@ -65,13 +66,13 @@ int main(int argc, char *argv[]) {
     // step 5: write response
 
     // get the file name firstly
-    ssize_t read_len = read(client_sock, read_buf, BUF_SIZE);
+    ssize_t read_len = read(client_sock, file_name, BUF_SIZE);
     if (read_len == -1) {
         error_handling("read() error!");
     }
-    char *file_name;
+//    char *file_name;
     // get file_name
-    strcpy(file_name, read_buf);
+//    strcpy(file_name, read_buf);
     fp = fopen(file_name, "rb");
     if (fp != NULL) {
         while (1) {
