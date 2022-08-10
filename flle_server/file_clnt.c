@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
     printf("Input file name : ");
     scanf("%s", file_name);
     printf("%s\n", file_name);
-    FILE *fp = fopen(file_name, "wb");
+    FILE *fp = fopen("download.txt", "wb");
     // send file name to server
     write(sock, file_name, strlen(file_name) + 1);
 

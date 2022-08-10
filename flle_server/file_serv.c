@@ -76,7 +76,6 @@ int main(int argc, char *argv[]) {
     printf("%s\n", file_name);
     fp = fopen(file_name, "rb");
     if (fp != NULL) {
-        printf("get the file\n");
         while (1) {
             // read BUF_SIZE(100) bytes each time
             size_t read_cnt = fread((void *) read_buf, 1, BUF_SIZE, fp);
