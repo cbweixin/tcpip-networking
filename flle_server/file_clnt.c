@@ -48,6 +48,7 @@ int main(int argc, char *argv[]) {
     write(sock, file_name, strlen(file_name) + 1);
 
     while ((read_cnt = read(sock, read_buf, BUF_SIZE)) != 0) {
+        printf("get content from server\n");
         fwrite((void *) read_buf, 1, read_cnt, fp);
     }
     fclose(fp);

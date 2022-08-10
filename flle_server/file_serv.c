@@ -84,6 +84,7 @@ int main(int argc, char *argv[]) {
                 write(client_sock, read_buf, read_cnt);
                 break;
             }
+            printf("begin to write\n");
             write(client_sock, read_buf, BUF_SIZE);
         }
     } else {
