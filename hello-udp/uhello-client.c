@@ -9,6 +9,7 @@
 #include <netinet/in.h>
 #include <string.h>
 #include <unistd.h>
+#include <arpa/inet.h>
 
 #define BUF_SIZE 30
 
@@ -32,7 +33,7 @@ int main(int argc, char *argv[]) {
     }
     memset(&serv_adr, 0, sizeof(serv_adr));
     serv_adr.sin_family = AF_INET;
-    serv_adr.sin_addr.s_addr = htonl(argv[1]);
+    serv_adr.sin_addr.s_addr = inet_addr(argv[1]);
     serv_adr.sin_port = htons(atoi(argv[2]));
 
     while (1) {
@@ -42,13 +43,14 @@ int main(int argc, char *argv[]) {
             break;
         }
         sendto(
-                sock, message, str_len, 0, (struct sockaddr *) &from_adr, adr_sz
+                sock, message, strlen(message), 0, (struct sockaddr *) &serv_adr, sizeof(serv_adr)
               );
         adr_sz = sizeof(from_adr);
         str_len = recvfrom(
                 sock, message, BUF_SIZE, 0, (struct sockaddr *) &from_adr, &adr_sz
                           );
-
+        message[str_len] = 0;
+        printf("Message from server: %s", message);
     }
 
     close(sock);

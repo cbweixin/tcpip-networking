@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
     serv_adr.sin_port = htons(atoi(argv[1]));
 
     // udp has bind, but has no `connection` func call
-    if (bind(serv_sock, (stuct socktaddr *)&serv_adr, sizeof(serv_adr)) == 1) {
+    if (bind(serv_sock, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) == -1) {
         error_handling("bind() error");
     }
 
