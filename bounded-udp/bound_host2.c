@@ -38,8 +38,8 @@ int main(int argc, char *argv[]) {
     you_adr.sin_port = htons(atoi(argv[2]));
 
     sendto(sock, msg1, sizeof(msg1), 0, (struct sockaddr *) &you_adr, sizeof(you_adr));
-    sendto(sock, msg2, sizeof(msg1), 0, (struct sockaddr *) &you_adr, sizeof(you_adr));
-    sendto(sock, msg3, sizeof(msg1), 0, (struct sockaddr *) &you_adr, sizeof(you_adr));
+    sendto(sock, msg2, sizeof(msg2), 0, (struct sockaddr *) &you_adr, sizeof(you_adr));
+    sendto(sock, msg3, sizeof(msg3), 0, (struct sockaddr *) &you_adr, sizeof(you_adr));
 
     close(sock);
     return 0;
