@@ -39,12 +39,12 @@ int main(int argc, char *argv[]) {
     while (1) {
         fputs("Insert a mesage(q to quit):", stdout);
         fgets(message, sizeof(message), stdin);
-        if (!strcmp(message, "q\n") || !strcmp(message, "Q\n")) {
-            break;
-        }
         sendto(
                 sock, message, strlen(message), 0, (struct sockaddr *) &serv_adr, sizeof(serv_adr)
               );
+        if (!strcmp(message, "q\n") || !strcmp(message, "Q\n")) {
+            break;
+        }
         adr_sz = sizeof(from_adr);
         str_len = recvfrom(
                 sock, message, BUF_SIZE, 0, (struct sockaddr *) &from_adr, &adr_sz
