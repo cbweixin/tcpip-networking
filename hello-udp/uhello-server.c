@@ -44,12 +44,9 @@ int main(int argc, char *argv[]) {
         str_len = recvfrom(
                 serv_sock, message, BUF_SIZE, 0, (struct sockaddr *) &clnt_adr, &clnt_adr_size
                           );
-        for (int i = 0; i < BUF_SIZE && message[i] != 0; i++) {
-            printf("%c\n", message[i]);
-        }
-
-        printf("comp %d %lu\n", strcmp(message, "q\n"), strlen(message));
-        if (!strcmp(message, "q\0") || !strcmp(message, "Q\0")) {
+        message[str_len] = 0;
+        if (!strcmp(message, "q") || !strcmp(message, "Q")) {
+            printf("%s", message);
             break;
         }
         sendto(
