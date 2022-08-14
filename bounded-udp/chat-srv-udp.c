@@ -43,12 +43,16 @@ int main(int argc, char *argv[]) {
         str_len = recvfrom(
                 serv_sock, message, BUF_SIZE, 0, (struct sockaddr *) &clnt_adr, &clnt_adr_size
                           );
+        // ascii '\0' is 0, A=65, etc. so message[] = 0 equivalent to message[] = '\0', but the latter is unambiguous.
         message[str_len] = 0;
-        if (!strcmp(message, "q\0") || !strcmp(message, "Q\0")) {
+        printf("Message from client is: %s", message);
+
+        fputs("Insert a mesage(q to quit):", stdout);
+        fgets(message, sizeof(message), stdin);
+        if (!strcmp(message, "q\n") || !strcmp(message, "Q\n"))
             break;
-        }
         sendto(
-                serv_sock, message, str_len, 0, (struct sockaddr *) &clnt_adr, clnt_adr_size
+                serv_sock, message, strlen(message), 0, (struct sockaddr *) &clnt_adr, clnt_adr_size
               );
 
     }
