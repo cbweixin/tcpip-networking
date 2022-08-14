@@ -44,7 +44,6 @@ int main(int argc, char *argv[]) {
                 serv_sock, message, BUF_SIZE, 0, (struct sockaddr *) &clnt_adr, &clnt_adr_size
                           );
         message[str_len] = 0;
-        printf("comp %d %lu\n", strcmp(message, "q\n"), strlen(message));
         if (!strcmp(message, "q\0") || !strcmp(message, "Q\0")) {
             break;
         }

@@ -45,8 +45,7 @@ int main(int argc, char *argv[]) {
                 serv_sock, message, BUF_SIZE, 0, (struct sockaddr *) &clnt_adr, &clnt_adr_size
                           );
         message[str_len] = 0;
-        if (!strcmp(message, "q") || !strcmp(message, "Q")) {
-            printf("%s", message);
+        if (str_len == 2 && (message[0] == 'q' || message[1] == 'Q')) {
             break;
         }
         sendto(
