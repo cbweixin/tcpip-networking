@@ -29,6 +29,7 @@ int main(int argc, char *argv[]) {
     }
     printf("Address type: %s \n", (host->h_addrtype == AF_INET) ? "AF_INET" : "AF_INET6");
     for (i = 0; host->h_addr_list[i]; i++) {
+        // h_addr_list keep the address of in_addr struct instead of string, so need to do inet_ntoa conversion
         printf("IP addr %d : %s \n", i + 1, inet_ntoa(*(struct in_addr *) host->h_addr_list[i]));
     }
     return 0;
