@@ -14,6 +14,7 @@ int main(int argc, char *argv[]) {
         sleep(15);
         return 24;
     } else {
+        printf("child process pid: %d \n", pid);
         while (!waitpid(-1, &status, WNOHANG)) {
             sleep(3);
             puts("sleep 3sec.");
