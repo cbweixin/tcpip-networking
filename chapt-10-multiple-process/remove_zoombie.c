@@ -36,6 +36,8 @@ int main(int argc, char *argv[]) {
         if (pid == 0) { // another child proc execution
             puts("Hi! I'm another child process");
             sleep(10);
+            // based on the running result, only 24 could give me 2 `removed proc` output, other value won't
+            // why??
             exit(24);
         } else {
             int i;
