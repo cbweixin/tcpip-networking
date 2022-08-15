@@ -22,6 +22,7 @@ int main(int argc, char *argv[]) {
     struct sigaction act;
     act.sa_handler = read_childproc;
     sigemptyset(&act.sa_mask);
+    act.sa_flags = 0;
     sigaction(SIGCHLD, &act, 0);
 
     pid = fork();
@@ -35,7 +36,7 @@ int main(int argc, char *argv[]) {
         if (pid == 0) { // another child proc execution
             puts("Hi! I'm another child process");
             sleep(10);
-            exit(33);
+            exit(24);
         } else {
             int i;
             printf("Child proc id: %d \n", pid);
