@@ -38,4 +38,4 @@ add_executable(
         chapt-9-socket-options/get_buf.c
         chapt-9-socket-options/set_buf.c
         chapt-9-socket-options/reuseadr_eserver.c
-        chapt-10-multiple-process/fork.c chapt-10-multiple-process/zoombie.c chapt-10-multiple-process/wait.c chapt-10-multiple-process/waitpid.c)
+        chapt-10-multiple-process/fork.c chapt-10-multiple-process/zoombie.c chapt-10-multiple-process/wait.c chapt-10-multiple-process/waitpid.c chapt-10-multiple-process/signal.c chapt-10-multiple-process/sigaction.c)
