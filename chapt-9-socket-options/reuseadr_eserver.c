@@ -58,6 +58,8 @@ int main(int argc, char *argv[]) {
 
     while ((str_len = read(clnt_sock, message, sizeof(message))) != 0) {
         write(clnt_sock, message, str_len);
+        // fd 0, 1, 2 means stdin, stdout, stderr, so this means not only write to socket, we also write message to
+        // stdout
         write(1, message, str_len);
     }
     close(clnt_sock);
