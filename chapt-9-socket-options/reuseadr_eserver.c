@@ -21,6 +21,7 @@ int main(int argc, char *argv[]) {
     int option, str_len;
     socklen_t optlen, clnt_adr_sz;
     struct sockaddr_in serv_adr, clnt_adr;
+    int state;
 
     if (argc != 2) {
         printf("Usage : %s <port> \n", argv[0]);
@@ -31,14 +32,14 @@ int main(int argc, char *argv[]) {
     if (serv_sock == -1) {
         error_handling("socket() error");
     }
-/*
     optlen = sizeof(option);
     option = TRUE;
+
     state = setsockopt(serv_sock, SOL_SOCKET, SO_REUSEADDR, (void *) &option, optlen);
     if (state) {
         error_handling("setsockopt() error");
     }
-*/
+
     memset(&serv_adr, 0, sizeof(serv_adr));
     serv_adr.sin_family = AF_INET;
     serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);

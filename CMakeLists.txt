@@ -36,4 +36,6 @@ add_executable(
         chapt-8-dns/gethostbyaddr.c
         chapt-9-socket-options/sock_type.c
         chapt-9-socket-options/get_buf.c
-        chapt-9-socket-options/set_buf.c chapt-9-socket-options/reuseadr_eserver.c)
+        chapt-9-socket-options/set_buf.c
+        chapt-9-socket-options/reuseadr_eserver.c
+        chapt-10-multiple-process/fork.c)
