@@ -9,7 +9,7 @@
 #include <netinet/in.h>
 #include <signal.h>
 
-#define BUF_SIZE 30
+#define BUF_SIZE 1024 // try to set to 30, it gives me error
 
 void error_handling(char *message);
 
@@ -59,6 +59,7 @@ int main(int argc, char *argv[]) {
         clnt_sock = accept(serv_sock, (struct sockaddr *) &clnt_adr, &clnt_adr_sz);
         if (clnt_sock == -1) {
 //            error_handling("accept() error");
+            printf("accept error...");
             continue;
         } else {
             printf("Connected client %d \n", i + 1);
@@ -72,18 +73,19 @@ int main(int argc, char *argv[]) {
         if (pid == 0) { // child proc execution
             close(serv_sock); // why close it? because child proc already got cloned serv_sock from parent proc
             while ((str_len = read(clnt_sock, message, BUF_SIZE)) != 0) {
+                printf("msg received : %s\n", message);
                 write(clnt_sock, message, str_len);
             }
             close(clnt_sock);
             puts("client disconnected...");
             return 0;
         } else {
+            printf("child proc id: %d \n", pid);
             close(clnt_sock); // clnt sock already cloned for child proc, so sever need destory its own clnt_sock
         }
-        close(serv_sock);
-        return 0;
-
     }
+    close(serv_sock);
+    return 0;
 
 }
 
