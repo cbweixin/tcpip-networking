@@ -18,7 +18,8 @@ int main(int argc, char *argv[]) {
     pid = fork();
     if (pid == 0) { // child proc bidirection communication
         write(fds[1], str1, sizeof(str1));
-        sleep(2);
+        // need sleep , otherwise, read would get the data write by itsef , then parent proc would waiting forever
+//        sleep(2);
         read(fds[0], buf, BUF_SIZE);
         printf("Child proc output: %s \n", buf);
     } else {  // parent proc bidirectional communication
