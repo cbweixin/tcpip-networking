@@ -19,6 +19,7 @@ int main(int argc, char *argv[]) {
     int serv_sock, clnt_sock;
     char message[BUF_SIZE];
     int str_len, i, state;
+    i = 0;
 
     pid_t pid;
     struct sigaction act;
@@ -57,13 +58,14 @@ int main(int argc, char *argv[]) {
         clnt_adr_sz = sizeof(clnt_adr);
         clnt_sock = accept(serv_sock, (struct sockaddr *) &clnt_adr, &clnt_adr_sz);
         if (clnt_sock == -1) {
-            error_handling("accept() error");
+//            error_handling("accept() error");
             continue;
         } else {
             printf("Connected client %d \n", i + 1);
         }
         pid = fork();
         if (pid == -1) {
+            puts("fork failed...");
             close(clnt_sock);
             continue;
         }

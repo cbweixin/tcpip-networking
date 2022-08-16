@@ -11,6 +11,7 @@
 void read_childproc(int sig) {
     int status;
     pid_t id = waitpid(-1, &status, WNOHANG);
+    printf("Removing proc id: %d \n", id);
     if (WIFEXITED(status)) {
         printf("Removed proc id: %d \n", id);
         printf("Child send: %d \n", WEXITSTATUS(status));
