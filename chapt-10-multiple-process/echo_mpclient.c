@@ -91,8 +91,12 @@ void write_routine(int sock, char *buf) {
         fgets(buf, BUF_SIZE, stdin);
 
         if (!strcmp(buf, "q\n") || !strcmp(buf, "Q\n")) {
-            // why not use close? after we do fork, the fd of socket got copied, so close won't really close
-            // the socket, we need shutdown here
+            // why not use close? after we do fork, the fd of socket got copied, so `close` would really destory a
+            // socket. while main proc might still reading bytes from socket, we can not do that. shutdown is a flexible
+            // way to block communication in one or both directions. When the second parameter is SHUT_RDWR,
+            // it will block both sending and receiving (like close).
+            // right now we shut shutdown writing, so reading is not affected, the main proc still abel to read
+            // https://stackoverflow.com/questions/4160347/close-vs-shutdown-socket
             shutdown(sock, SHUT_WR);
             return;
         }
