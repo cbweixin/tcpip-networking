@@ -17,6 +17,21 @@ void read_routine(int sock, char *buf);
 
 void write_routine(int sock, char *buf);
 
+//  ./treeps | grep mpc.out
+//                |_ 71127    grep --color=auto mpc.out
+//          |_ 70299    ./mpc.out 127.0.0.1 19999
+//             |_ 70300    ./mpc.out 127.0.0.1 19999
+//          |_ 69289    ./mpc.out 127.0.0.1 19999
+//             |_ 69290    ./mpc.out 127.0.0.1 19999
+//             |_ 69332    ./mpc.out 127.0.0.1 19999
+//                |_ 69333    ./mpc.out 127.0.0.1 19999
+//❯ ./treeps | grep em.out
+//                |_ 71184    grep --color=auto em.out
+//                |_ 69134    ./em.out 19999
+//                   |_ 69291    ./em.out 19999
+//                   |_ 69334    ./em.out 19999
+//                   |_ 70301    ./em.out 19999
+
 int main(int argc, char *argv[]) {
     int sock, str_len, recv_len, recv_cnt;
     char message[BUF_SIZE];
