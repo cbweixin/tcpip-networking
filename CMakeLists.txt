@@ -38,4 +38,14 @@ add_executable(
         chapt-9-socket-options/get_buf.c
         chapt-9-socket-options/set_buf.c
         chapt-9-socket-options/reuseadr_eserver.c
-        chapt-10-multiple-process/fork.c chapt-10-multiple-process/zoombie.c chapt-10-multiple-process/wait.c chapt-10-multiple-process/waitpid.c chapt-10-multiple-process/signal.c chapt-10-multiple-process/sigaction.c chapt-10-multiple-process/remove_zoombie.c chapt-10-multiple-process/echo_mpserv.c chapt-10-multiple-process/echo_mpclient.c chapt-11-IPC/pipe1.c)
+        chapt-10-multiple-process/fork.c
+        chapt-10-multiple-process/zoombie.c
+        chapt-10-multiple-process/wait.c
+        chapt-10-multiple-process/waitpid.c
+        chapt-10-multiple-process/signal.c
+        chapt-10-multiple-process/sigaction.c
+        chapt-10-multiple-process/remove_zoombie.c
+        chapt-10-multiple-process/echo_mpserv.c
+        chapt-10-multiple-process/echo_mpclient.c
+        chapt-11-IPC/pipe1.c
+        chapt-11-IPC/pip2.c)
