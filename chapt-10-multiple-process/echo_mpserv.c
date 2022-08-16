@@ -8,8 +8,9 @@
 #include <unistd.h>
 #include <netinet/in.h>
 #include <signal.h>
-
-#define BUF_SIZE 1024 // try to set to 30, it gives me error
+// try to set to 30, it gives me error, this size need to be consistent with client setting
+// I use echo_client_enhanced.c as client, the setting is 1024, so server need to be the same
+#define BUF_SIZE 1024
 
 void error_handling(char *message);
 
@@ -62,7 +63,7 @@ int main(int argc, char *argv[]) {
             printf("accept error...");
             continue;
         } else {
-            printf("Connected client %d \n", i + 1);
+            printf("Connected client %d \n", i++);
         }
         pid = fork();
         if (pid == -1) {
