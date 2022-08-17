@@ -61,10 +61,10 @@ int main(int argc, char *argv[]) {
     if (pid == 0) {
         FILE *fp = fopen("echomsg.txt", "wt");
         char msgbuf[BUF_SIZE];
-        int len;
 
+        // only write 10 lines
         for (int i = 0; i < 10; ++i) {
-            len = read(fds[0], msgbuf, BUF_SIZE);
+            int len = read(fds[0], msgbuf, BUF_SIZE);
             fwrite((void *) msgbuf, 1, len, fp);
         }
         fclose(fp);
