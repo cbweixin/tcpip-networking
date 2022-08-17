@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 
-#define BUF_SIZE 30
+#define BUF_SIZE 3
 
 void error_handling(char *message);
 

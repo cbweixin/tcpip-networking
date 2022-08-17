@@ -11,7 +11,7 @@
 #include <signal.h>
 #include <fcntl.h>
 
-#define BUF_SIZE 30
+#define BUF_SIZE 3
 
 void error_handling(char *message);
 
@@ -88,6 +88,7 @@ void urg_handler(int signo) {
     char buf[BUF_SIZE];
     // TODO: why need -1?
     str_len = recv(recv_sock, buf, sizeof(buf) - 1, MSG_OOB);
+//    str_len = recv(recv_sock, buf, 1, MSG_OOB);
     printf("sizeof(buf) : %lu \n", sizeof(buf));
 //    str_len = recv(recv_sock, buf, sizeof(buf), MSG_OOB);
     buf[str_len] = 0;
