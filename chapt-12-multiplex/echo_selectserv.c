@@ -78,8 +78,8 @@ int main(int argc, char *argv[]) {
                     printf("connected client : %d \n", clnt_sock);
                 } else { // read message
                     str_len = read(i, message, BUF_SIZE);
-                    if (str_len == 0) {
-                        FD_CLR(i, &reads);
+                    if (str_len == 0) { // if message from client is EOF
+                        FD_CLR(i, &reads); // delete this socket id from fd_set, no monitor any more since closed
                         close(i);
                         printf("closed client: %d \n", i);
                     } else {
