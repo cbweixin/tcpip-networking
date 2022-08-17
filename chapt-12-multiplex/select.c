@@ -18,11 +18,15 @@ int main(int argc, char *argv[]) {
     // fd 0 is stdin, monitoring stdin event
     FD_SET(0, &reads);
 
+    // should not set timeout here, each time call select func, you need to set it
 //    timeout.tv_sec = 5;
 //    timeout.tv_usec = 5000;
 
     while (1) {
+        // copy reads, general pattern, so reads still has intitial value. after call select, except the fd which
+        // has event , all other fds would be reset to 0
         temps = reads;
+        // set it
         timeout.tv_sec = 5;
         timeout.tv_usec = 0;
         result = select(1, &temps, 0, 0, &timeout);
