@@ -86,7 +86,9 @@ void error_handling(char *message) {
 void urg_handler(int signo) {
     int str_len;
     char buf[BUF_SIZE];
+    // TODO: why need -1?
     str_len = recv(recv_sock, buf, sizeof(buf) - 1, MSG_OOB);
+//    str_len = recv(recv_sock, buf, sizeof(buf), MSG_OOB);
     buf[str_len] = 0;
     printf("Urgent message: %s \n", buf);
 }
