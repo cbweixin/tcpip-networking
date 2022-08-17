@@ -39,8 +39,9 @@ int main(int argc, char *argv[]) {
 
     write(sock, "123", strlen("123"));
     send(sock, "4", strlen("4"), MSG_OOB);
+    send(sock, "5", strlen("5"), MSG_DONTWAIT);
     write(sock, "567", strlen("567"));
-    send(sock, "890", strlen("890"), MSG_OOB);
+    send(sock, "890", strlen("890") + 1, MSG_OOB);
 
     close(sock);
     return 0;
