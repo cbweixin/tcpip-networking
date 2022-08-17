@@ -37,11 +37,13 @@ int main(int argc, char *argv[]) {
         puts("Connected.........");
     }
 
-    write(sock, "123", strlen("123"));
-    send(sock, "4", strlen("4"), MSG_OOB);
-    send(sock, "5", strlen("5"), MSG_DONTWAIT);
-    write(sock, "567", strlen("567"));
-    send(sock, "890", strlen("890") + 1, MSG_OOB);
+    write(sock, "123\n", strlen("123\n"));
+//    send(sock, "4\n", strlen("4\n"), MSG_OOB);
+    send(sock, "4\n", strlen("4\n"), MSG_DONTWAIT);
+    send(sock, "5\n", strlen("5\n"), MSG_DONTWAIT);
+    write(sock, "567\n", strlen("567\n"));
+    // need strlen()+1, otherwise it only prints "89" instead of "890"
+    send(sock, "890\n", strlen("890\n"), MSG_OOB);
 
     close(sock);
     return 0;
