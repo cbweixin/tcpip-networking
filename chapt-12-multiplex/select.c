@@ -30,6 +30,7 @@ int main(int argc, char *argv[]) {
         timeout.tv_sec = 5;
         timeout.tv_usec = 0;
         result = select(1, &temps, 0, 0, &timeout);
+        printf("result is : %d \n", result);
         if (result == -1) {
             puts("select() error !");
             break;
