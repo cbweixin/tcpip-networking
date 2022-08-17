@@ -7,6 +7,7 @@
 #include <netinet/in.h>
 #include <string.h>
 #include <unistd.h>
+#include <arpa/inet.h>
 
 #define BUF_SIZE 30
 
@@ -27,8 +28,8 @@ int main(int argc, char *argv[]) {
 
     memset(&recv_adr, 0, sizeof(recv_adr));
     recv_adr.sin_family = AF_INET;
-    recv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
-    recv_adr.sin_port = htons(atoi(argv[1]));
+    recv_adr.sin_addr.s_addr = inet_addr(argv[1]);
+    recv_adr.sin_port = htons(atoi(argv[2]));
 
     if (connect(sock, (struct sockaddr *) &recv_adr, sizeof(recv_adr)) == -1) {
         error_handling("connect() error !");
