@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 
-#define BUF_SIZE 3
+#define BUF_SIZE 30
 
 void error_handling(char *message);
 
@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
 //    send(sock, "890\n", strlen("890\n"), MSG_OOB);
 
     write(sock, "123", strlen("123"));
-    send(sock, "44", strlen("44"), MSG_OOB);
+    send(sock, "4", strlen("4"), MSG_OOB);
     write(sock, "567", strlen("567"));
     send(sock, "890", strlen("890"), MSG_OOB);
 

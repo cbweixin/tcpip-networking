@@ -7,8 +7,6 @@
 #include <string.h>
 #include <unistd.h>
 #include <netinet/in.h>
-#include <signal.h>
-#include <fcntl.h>
 
 #define BUF_SIZE 30
 
@@ -20,8 +18,8 @@ int main(int argc, char *argv[]) {
     char message[BUF_SIZE];
     int str_len, i = 0, state;
 
-    struct sockaddr_in serv_adr, acpt_adr;
-    socklen_t serv_adr_sz;
+    struct sockaddr_in recv_adr, acpt_adr;
+    socklen_t recv_adr_sz;
 
     if (argc != 2) {
         printf("Usage : %s <port> \n", argv[0]);
@@ -46,24 +44,30 @@ int main(int argc, char *argv[]) {
         error_handling("listen() error");
     }
 
-    serv_adr_sz = sizeof(serv_adr);
-    recv_sock = accept(acpt_sock, (struct sockaddr *) &serv_adr, &serv_adr_sz);
+    recv_adr_sz = sizeof(recv_adr);
+    recv_sock = accept(acpt_sock, (struct sockaddr *) &recv_adr, &recv_adr_sz);
     if (recv_sock == -1) {
         error_handling("accept() error");
     } else {
         printf("Connected client %d \n", ++i);
     }
 
-    fcntl(recv_sock, F_SETOWN, getpid());
-    state = sigaction(SIGURG, &act, 0);
-
-    while ((str_len = read(recv_sock, message, BUF_SIZE)) != 0) {
-        if (str_len == -1) {
-            continue;
+    while (1) {
+        str_len = recv(recv_sock, message, sizeof(message) - 1, MSG_PEEK | MSG_DONTWAIT);
+        if (str_len > 0) {
+            break;
         }
-        message[str_len] = 0;
-        printf("message from client %s \n", message);
     }
+    message[str_len] = 0;
+    printf("buffering %d bytes: %s \n", str_len, message);
+
+    str_len = recv(recv_sock, message, sizeof(message) - 1, 0);
+    if (str_len == -1) {
+        printf("failed to recieve again...");
+    }
+    message[str_len] = 0;
+    printf("read again: %s \n", message);
+
 
     close(recv_sock);
     close(acpt_sock);
