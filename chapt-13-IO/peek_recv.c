@@ -53,6 +53,7 @@ int main(int argc, char *argv[]) {
     }
 
     while (1) {
+        // MSG_PEEK non-blocking even there is no data in buffer
         str_len = recv(recv_sock, message, sizeof(message) - 1, MSG_PEEK | MSG_DONTWAIT);
         if (str_len > 0) {
             break;
@@ -61,6 +62,7 @@ int main(int argc, char *argv[]) {
     message[str_len] = 0;
     printf("buffering %d bytes: %s \n", str_len, message);
 
+    // data would be removed from buffer this time
     str_len = recv(recv_sock, message, sizeof(message) - 1, 0);
     if (str_len == -1) {
         printf("failed to recieve again...");
