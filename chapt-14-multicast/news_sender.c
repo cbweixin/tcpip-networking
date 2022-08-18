@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
     mul_adr.sin_port = htons(atoi(argv[2]));
 
     setsockopt(send_sock, IPPROTO_IP, IP_MULTICAST_TTL, (void *) &time_live, sizeof(time_live));
-    if ((fp == fopen("news.txt", "r")) == NULL) {
+    if ((fp = fopen("news.txt", "r")) == NULL) {
         error_handling("fopen() error!");
     }
 
