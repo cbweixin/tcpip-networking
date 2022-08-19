@@ -16,6 +16,7 @@ int main(void) {
     printf("First file descriptor: %d \n", fd);
     fp = fdopen(fd, "w");
     fputs("TCP/IP Socket Programming \n", fp);
+    // fileno(fp), convert FILE pointer to file descriptor
     printf("Second file descriptor: %d \n", fileno(fp));
     fclose(fp);
     return 0;
