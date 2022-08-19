@@ -15,6 +15,7 @@ int main(void) {
 
     // convert file descriptor to FILE pointer
     fp = fdopen(fd, "w");
+    // standardized IO, could util io buffer
     fputs("Network c programming \n", fp);
     // close the FILE pointer, so file descriptor is no need to close any more.
     fclose(fp);
