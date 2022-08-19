@@ -7,14 +7,13 @@
 #include <unistd.h>
 #include <netinet/in.h>
 
-#define BUF_SIZE 1024
 
 void error_handling(char *message);
 
 int main(int argc, char *argv[]) {
     int serv_sock, clnt_sock;
     char message[BUF_SIZE] = {0,};
-    int str_len, i;
+    int i;
     FILE *readfp, *writefp;
 
     struct sockaddr_in serv_adr, clnt_adr;
