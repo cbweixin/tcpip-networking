@@ -63,7 +63,7 @@ int main(int argc, char *argv[]) {
     // critical, socket goes to half-close status because this call
     shutdown(fileno(writefp), SHUT_WR);
 
-    // fclose wound send EOF to client
+    // fclose would send EOF to client
     fclose(writefp);
     // will server get last message from client after close fclose on writefp?
     fgets(message, sizeof(message), readfp);
