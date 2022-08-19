@@ -1,10 +1,12 @@
 //
 // Created by wei,xin on 8/19/22.
 //
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <netinet/in.h>
+#include <unistd.h>
 
 #define BUF_SIZE 1024
 
@@ -13,7 +15,7 @@ void error_handling(char *message);
 int main(int argc, char *argv[]) {
     int serv_sock, clnt_sock;
     char message[BUF_SIZE] = {0,};
-    int str_len, i;
+    int i = 0;
     FILE *readfp, *writefp;
 
     struct sockaddr_in serv_adr, clnt_adr;
@@ -51,11 +53,15 @@ int main(int argc, char *argv[]) {
 
     // convert fd to file pointer
     readfp = fdopen(clnt_sock, "r");
-    writefp = fdopen(clnt_sock, "w");
+    // notice dup function call, now writefp has a clone fd for socket
+    writefp = fdopen(dup(clnt_sock), "w");
     fputs("From server: Hi~ client? \n", writefp);
     fputs("I love all of the world \n", writefp);
     fputs("you are welcome! \n", writefp);
     fflush(writefp);
+
+    // critical, socket goes to half-close status because this call
+    shutdown(fileno(writefp), SHUT_WR);
 
     // fclose wound send EOF to client
     fclose(writefp);
