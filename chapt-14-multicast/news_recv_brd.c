@@ -17,8 +17,9 @@ int main(int argc, char *argv[]) {
     char buf[BUF_SIZE];
     struct sockaddr_in adr;
     struct ip_mreq join_addr;
-    if (argc != 3) {
-        printf("Usage : %s <GroupIP> <PORT> \n", argv[0]);
+    // broadcast doesn't need group ip
+    if (argc != 2) {
+        printf("Usage : %s <PORT> \n", argv[0]);
         exit(1);
     }
 
@@ -26,18 +27,10 @@ int main(int argc, char *argv[]) {
     memset(&adr, 0, sizeof(adr));
     adr.sin_family = AF_INET;
     adr.sin_addr.s_addr = htonl(INADDR_ANY);
-    adr.sin_port = htons(atoi(argv[2]));
+    adr.sin_port = htons(atoi(argv[1]));
 
     if (bind(recv_sock, (struct sockaddr *) &adr, sizeof(adr)) == -1) {
         error_handling("bind() error");
-    }
-
-    join_addr.imr_multiaddr.s_addr = inet_addr(argv[1]);
-    join_addr.imr_interface.s_addr = htonl(INADDR_ANY);
-
-    int state = setsockopt(recv_sock, IPPROTO_IP, IP_ADD_MEMBERSHIP, (void *) &join_addr, sizeof(join_addr));
-    if (state) {
-        error_handling("set socket option error !");
     }
 
     while (1) {
