@@ -61,6 +61,7 @@ int main(int argc, char *argv[]) {
             puts("epoll_wait() error");
             break;
         }
+        printf("event_cnt : %d \n", event_cnt);
 
         for (i = 0; i < event_cnt; i++) {
             if (ep_events[i].data.fd == serv_sock) {
@@ -68,7 +69,7 @@ int main(int argc, char *argv[]) {
                 clnt_sock = accept(serv_sock, (struct sockaddr *) &clnt_adr, &clnt_adr_sz);
                 if (clnt_sock == -1) {
                     printf("connect() error !\n");
-                    continue;
+//                    continue;
                 }
                 event.events = EPOLLIN;
                 event.data.fd = clnt_sock;
@@ -82,6 +83,7 @@ int main(int argc, char *argv[]) {
                     printf("Closed client: %d \n", ep_events[i].data.fd);
                 } else {
                     // echo!
+                    printf("echo...");
                     write(ep_events[i].data.fd, message, str_len);
                 }
             }
