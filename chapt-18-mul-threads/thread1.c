@@ -27,7 +27,8 @@ void *thread_main(void *arg) {
     int cnt = *((int *) arg);
     for (i = 0; i < cnt; i++) {
         sleep(1);
-        puts("running thread");
+//        puts("running thread");
+        printf("running thread %d \n", i);
     }
 
     return NULL;
