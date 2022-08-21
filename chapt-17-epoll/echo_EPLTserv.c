@@ -63,6 +63,7 @@ int main(int argc, char *argv[]) {
             break;
         }
         printf("event_cnt : %d \n", event_cnt);
+        // level trigger,
         puts("return epoll_wait");
         for (i = 0; i < event_cnt; i++) {
             if (ep_events[i].data.fd == serv_sock) {
