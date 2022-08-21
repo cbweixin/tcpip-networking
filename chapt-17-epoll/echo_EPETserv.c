@@ -54,6 +54,7 @@ int main(int argc, char *argv[]) {
     epfd = epoll_create(EPOLL_SIZE);
     ep_events = malloc(sizeof(struct epoll_event) * EPOLL_SIZE);
 
+    // the book said change registered event as this, would take edge trigger, but I don't see it.
     event.events = EPOLLIN | EPOLLET;
     event.data.fd = serv_sock;
     epoll_ctl(epfd, EPOLL_CTL_ADD, serv_sock, &event);
