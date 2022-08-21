@@ -44,10 +44,10 @@ int main(int argc, char *argv[]) {
         if (!strcmp(message, "q\n") || !strcmp(message, "Q\n")) {
             break;
         }
-        str_len = write(sock, message, BUF_SIZE - 1);
+        str_len = write(sock, message, strlen(message));
         recv_len = 0;
         while (recv_len < str_len) {
-            recv_cnt = read(sock, message, BUF_SIZE - 1);
+            recv_cnt = read(sock, &message[recv_len], BUF_SIZE - 1);
             if (recv_cnt == -1) {
                 error_handling("read() error!");
             }
