@@ -9,12 +9,16 @@
 #include <unistd.h>
 #include <netinet/in.h>
 #include <sys/epoll.h>
+#include <errno.h>
+#include <fcntl.h>
 
 // reduce buffer size, prevent server read data in one shot
 #define BUF_SIZE 4
 #define EPOLL_SIZE 50
 
 void error_handling(char *message);
+
+void setnonblockingmode(int fd);
 
 // example of level trigger
 int main(int argc, char *argv[]) {
@@ -54,6 +58,7 @@ int main(int argc, char *argv[]) {
     epfd = epoll_create(EPOLL_SIZE);
     ep_events = malloc(sizeof(struct epoll_event) * EPOLL_SIZE);
 
+    setnonblockingmode(serv_sock);
     // the book said change registered event as this, would take edge trigger, but I don't see it.
     event.events = EPOLLIN | EPOLLET;
     event.data.fd = serv_sock;
@@ -66,7 +71,7 @@ int main(int argc, char *argv[]) {
             break;
         }
         printf("event_cnt : %d \n", event_cnt);
-        // level trigger,
+        // edge trigger,
         puts("return epoll_wait");
         for (i = 0; i < event_cnt; i++) {
             if (ep_events[i].data.fd == serv_sock) {
@@ -76,20 +81,29 @@ int main(int argc, char *argv[]) {
                     printf("connect() error !\n");
                     continue;
                 }
-                event.events = EPOLLIN;
+                setnonblockingmode(clnt_sock);
+                event.events = EPOLLIN | EPOLLET;
                 event.data.fd = clnt_sock;
                 epoll_ctl(epfd, EPOLL_CTL_ADD, clnt_sock, &event);;
                 printf("connected client: %d \n", clnt_sock);
             } else {
-                str_len = read(ep_events[i].data.fd, message, BUF_SIZE);
-                if (str_len == 0) {
-                    epoll_ctl(epfd, EPOLL_CTL_DEL, ep_events[i].data.fd, NULL);
-                    close(ep_events[i].data.fd);
-                    printf("Closed client: %d \n", ep_events[i].data.fd);
-                } else {
-                    // echo!
-                    printf("echo... \n");
-                    write(ep_events[i].data.fd, message, str_len);
+                while (1) {
+                    str_len = read(ep_events[i].data.fd, message, BUF_SIZE);
+                    if (str_len == 0) {
+                        epoll_ctl(epfd, EPOLL_CTL_DEL, ep_events[i].data.fd, NULL);
+                        close(ep_events[i].data.fd);
+                        printf("Closed client: %d \n", ep_events[i].data.fd);
+                        break;
+                    } else if (str_len < 0) {
+                        if (errno == EAGAIN) {
+                            break;
+                        }
+                    } else {
+                        // echo!
+                        printf("echo... \n");
+                        write(ep_events[i].data.fd, message, str_len);
+                    }
+
                 }
             }
         }
@@ -99,6 +113,11 @@ int main(int argc, char *argv[]) {
     close(epfd);
     return 0;
 
+}
+
+void setnonblockingmode(int fd) {
+    int flag = fcntl(fd, F_GETFL, 0);
+    fcntl(fd, F_SETFL, flag | O_NONBLOCK);
 }
 
 void error_handling(char *message) {
