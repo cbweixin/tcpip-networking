@@ -14,6 +14,8 @@ static sem_t sem_one;
 static sem_t sem_two;
 static int num;
 
+// this code not able to run on clang on mac, I tested at this website
+// https://www.onlinegdb.com/online_c_compiler
 int main(int argc, char *argv[]) {
     pthread_t id_t1, id_t2;
     sem_init(&sem_one, 0, 0);
