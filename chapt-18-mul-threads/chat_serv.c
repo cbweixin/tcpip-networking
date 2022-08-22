@@ -30,7 +30,7 @@ pthread_mutex_t mutx;
 int main(int argc, char *argv[]) {
     int serv_sock, clnt_sock;
     struct sockaddr_in serv_adr, clnt_adr;
-    int clnt_adr_sz;
+    int clnt_adr_sz, i = 0;
     pthread_t t_id;
 
     if (argc != 2) {
@@ -64,7 +64,7 @@ int main(int argc, char *argv[]) {
         if (clnt_sock == -1) {
             error_handling("accept() error");
         } else {
-            printf("Connected client %d \n", i + 1);
+            printf("Connected client %d \n", ++i);
         }
         pthread_mutex_lock(&mutx);
         clnt_socks[clnt_cnt++] = clnt_sock;
