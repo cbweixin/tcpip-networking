@@ -29,6 +29,7 @@ void *thread_summation(void *arg) {
     int end = ((int *) arg)[1];
 
     while (start <= end) {
+        // add delay intentionly, sum would not be correct
         sleep(1);
         sum += start;
         start++;
