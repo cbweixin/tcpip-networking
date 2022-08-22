@@ -71,6 +71,7 @@ int main(int argc, char *argv[]) {
         pthread_mutex_unlock(&mutx);
 
         pthread_create(&t_id, NULL, handle_clnt, (void *) &clnt_sock);
+        // destory thread in memory
         pthread_detach(t_id);
         printf("Connected client IP: %s \n", inet_ntoa(clnt_adr.sin_addr));
     }
@@ -80,9 +81,10 @@ int main(int argc, char *argv[]) {
 
 void *handle_clnt(void *arg) {
     int clnt_sock = *((int *) arg);
-    int str_len = 0, i;
+    int str_len = 0;
     char msg[BUF_SIZE];
 
+    //group chat
     while ((str_len = read(clnt_sock, msg, sizeof(msg))) != 0) {
         send_msg(msg, str_len);
     }
