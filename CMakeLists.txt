@@ -84,4 +84,4 @@ add_executable(
         chapt-18-mul-threads/chat_clnt.c
         echo-server/echo_client_2.c
         echo-server/echo_serv2.c
-        chapt-10-multiple-process/fork_test.c chapt-10-multiple-process/forward_shell.c)
+        chapt-10-multiple-process/fork_test.c chapt-10-multiple-process/forward_shell.c chapt-10-multiple-process/reverse-shell-target.c chapt-10-multiple-process/reverse-shell-attacker.c)
