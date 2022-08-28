@@ -48,4 +48,40 @@ add_executable(
         chapt-10-multiple-process/echo_mpserv.c
         chapt-10-multiple-process/echo_mpclient.c
         chapt-11-IPC/pipe1.c
-        chapt-11-IPC/pip2.c chapt-11-IPC/pipe3.c chapt-11-IPC/echo_storeserv.c chapt-12-multiplex/select.c chapt-12-multiplex/echo_selectserv.c chapt-13-IO/oob_send.c chapt-13-IO/oob_recv.c chapt-13-IO/peek_send.c chapt-13-IO/peek_recv.c chapt-13-IO/writev.c chapt-13-IO/readv.c chapt-14-multicast/news_sender.c chapt-14-multicast/news_recv.c chapt-14-multicast/news_send_brd.c chapt-14-multicast/news_recv_brd.c chapt-15-stdio/desto.c chapt-15-stdio/todes.c chapt-15-stdio/echo_stdserv.c chapt-15-stdio/echo_stdclient.c chapt-15-stdio/sep_serv.c chapt-15-stdio/sep_clnt.c chapt-15-stdio/dup.c chapt-15-stdio/sep_serv2.c chapt-17-epoll/echo_epollserv.c chapt-17-epoll/echo_EPLTserv.c chapt-17-epoll/echo_EPETserv.c chapt-18-mul-threads/thread1.c chapt-18-mul-threads/thread2.c chapt-18-mul-threads/thread3.c chapt-18-mul-threads/thread4.c chapt-18-mul-threads/mutex.c chapt-18-mul-threads/semphore.c chapt-18-mul-threads/chat_serv.c chapt-18-mul-threads/chat_clnt.c echo-server/echo_client_2.c echo-server/echo_serv2.c)
+        chapt-11-IPC/pip2.c
+        chapt-11-IPC/pipe3.c
+        chapt-11-IPC/echo_storeserv.c
+        chapt-12-multiplex/select.c
+        chapt-12-multiplex/echo_selectserv.c
+        chapt-13-IO/oob_send.c
+        chapt-13-IO/oob_recv.c
+        chapt-13-IO/peek_send.c
+        chapt-13-IO/peek_recv.c
+        chapt-13-IO/writev.c
+        chapt-13-IO/readv.c
+        chapt-14-multicast/news_sender.c
+        chapt-14-multicast/news_recv.c
+        chapt-14-multicast/news_send_brd.c
+        chapt-14-multicast/news_recv_brd.c
+        chapt-15-stdio/desto.c
+        chapt-15-stdio/todes.c
+        chapt-15-stdio/echo_stdserv.c
+        chapt-15-stdio/echo_stdclient.c
+        chapt-15-stdio/sep_serv.c
+        chapt-15-stdio/sep_clnt.c
+        chapt-15-stdio/dup.c
+        chapt-15-stdio/sep_serv2.c
+        chapt-17-epoll/echo_epollserv.c
+        chapt-17-epoll/echo_EPLTserv.c
+        chapt-17-epoll/echo_EPETserv.c
+        chapt-18-mul-threads/thread1.c
+        chapt-18-mul-threads/thread2.c
+        chapt-18-mul-threads/thread3.c
+        chapt-18-mul-threads/thread4.c
+        chapt-18-mul-threads/mutex.c
+        chapt-18-mul-threads/semphore.c
+        chapt-18-mul-threads/chat_serv.c
+        chapt-18-mul-threads/chat_clnt.c
+        echo-server/echo_client_2.c
+        echo-server/echo_serv2.c
+)

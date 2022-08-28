@@ -27,10 +27,10 @@ int main(int argc, char *argv[]) {
 
     bzero(message, BUF_SIZE);
     bzero(message2, BUF_SIZE);
-    bzero(&clnt_adr, sizeof(clnt_adr));
-    clnt_adr.sin_family = AF_INET;
-    clnt_adr.sin_addr.s_addr = htonl(INADDR_ANY);
-    clnt_adr.sin_port = htons(0);
+//    bzero(&clnt_adr, sizeof(clnt_adr));
+//    clnt_adr.sin_family = AF_INET;
+//    clnt_adr.sin_addr.s_addr = htonl(INADDR_ANY);
+//    clnt_adr.sin_port = htons(0);
 
 
     sock = socket(PF_INET, SOCK_STREAM, 0);
