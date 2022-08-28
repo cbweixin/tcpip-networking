@@ -51,24 +51,24 @@ int main(int argc, char *argv[]) {
     }
     int n;
     if ((n = recv(sock, message2, sizeof(message2), 0)) > 0) {
-        printf("Message %s: \n", message2);
+        printf("Message %s", message2);
     }
 
     while (1) {
         fputs("Input message(Q to quit): ", stdout);
-        while ((n = read(stdin, message, sizeof(message))) > 0) {
+        while ((n = read(0, message, sizeof(message))) > 0) {
             printf("mesage from terminal : %s \n", message);
-        }
-        if (send(sock, message, n, 0) < 0) {
-            printf("send error! %s (errno :%d)\n", strerror(errno), errno);
-            exit(0);
+            if (send(sock, message, n, 0) < 0) {
+                printf("send error! %s (errno :%d)\n", strerror(errno), errno);
+                exit(0);
+            }
+            if ((n = recv(sock, message2, sizeof(message2), 0)) > 0) {
+                printf("echoed from server length is %d\n", n);
+                write(1, message2, n);
+                printf("\n");
+            }
         }
 
-        if ((n = recv(sock, message2, sizeof(message2), 0)) > 0) {
-            printf("echoed from server length is %d\n", n);
-            write(stdout, message2, n);
-            printf("\n");
-        }
     }
     close(sock);
     return 0;
