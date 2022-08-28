@@ -15,9 +15,10 @@
 void error_handling(char *message);
 
 int main(int argc, char *argv[]) {
-    int sock, str_len;
+    int sock, str_len, n;
     char message[BUF_SIZE];
     char message2[BUF_SIZE];
+    int need_break = 0;
     struct sockaddr_in serv_adr, clnt_adr;
 
     if (argc != 3) {
@@ -49,15 +50,22 @@ int main(int argc, char *argv[]) {
     } else {
         puts("Connected.........");
     }
-    int n;
     if ((n = recv(sock, message2, sizeof(message2), 0)) > 0) {
         printf("Message %s", message2);
     }
 
+
     while (1) {
+        if (need_break == 1) {
+            break;
+        }
         fputs("Input message(Q to quit): ", stdout);
+        fflush(stdout);
         while ((n = read(0, message, sizeof(message))) > 0) {
-            printf("mesage from terminal : %s \n", message);
+            if (!strcmp(message, "q\n") || !strcmp(message, "Q\n")) {
+                need_break = 1;
+                break;
+            }
             if (send(sock, message, n, 0) < 0) {
                 printf("send error! %s (errno :%d)\n", strerror(errno), errno);
                 exit(0);
