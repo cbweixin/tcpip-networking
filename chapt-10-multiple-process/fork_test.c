@@ -32,6 +32,24 @@ int main() {
     pid_t pid;
     char *argv[NUM];
 
+    // ❯ gcc fork_test.c -o ft.out
+    //❯ ./ft.out la /
+    //
+    //warning: this program uses gets(), which is unsafe.
+    //$:la /
+    //1 is /
+    //2 is (null)
+    //
+    //$:find / -type f -iname "*.a"
+    //1 is /
+    //2 is -type
+    //3 is f
+    //4 is -iname
+    //5 is "*.a"
+    //6 is (null)
+    //
+    //$:
+    // parse the command line
     while (1) {
         printf("\n$:");
         gets(str);
