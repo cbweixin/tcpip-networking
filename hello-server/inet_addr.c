@@ -14,6 +14,7 @@ int main(int argc, char *argv[]){
         printf("Error occured! \n");
     } else {
         printf("Network ordered integer addr : %#lx \n", conv_addr);
+        printf("Network ordered integer addr : %#d \n", conv_addr);
     }
 
     conv_addr = inet_addr(addr2);
