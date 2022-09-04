@@ -12,7 +12,6 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <pthread.h>
-#include <semaphore.h>
 
 #define BUF_SIZE    100
 #define MAX_CLNT    256
