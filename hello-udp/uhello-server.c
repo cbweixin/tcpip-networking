@@ -55,6 +55,7 @@ int main(int argc, char *argv[]) {
 
     }
 
+    // the above while loop has no break, so this code would never got opportunity to execute
     close(serv_sock);
     return 0;
 }
