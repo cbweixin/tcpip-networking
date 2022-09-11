@@ -50,6 +50,7 @@ int main(int argc, char *argv[]) {
     serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
     serv_adr.sin_port = htons(atoi(argv[1]));
 
+    // both UDP and TCP would call bind function
     if (bind(serv_sock, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) == -1) {
         error_handling("bind() error");
     }

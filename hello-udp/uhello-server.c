@@ -49,6 +49,7 @@ int main(int argc, char *argv[]) {
         if (str_len == 2 && (message[0] == 'q' || message[1] == 'Q')) {
             break;
         }
+        // when call sendto, os would allocate IP and port
         sendto(
                 serv_sock, message, str_len, 0, (struct sockaddr *) &clnt_adr, clnt_adr_size
               );
