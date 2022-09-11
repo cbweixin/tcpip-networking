@@ -25,6 +25,7 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
 
+    // notice `SOCK_DGRAM`, this is different from TCP
     serv_sock = socket(PF_INET, SOCK_DGRAM, 0);
     if (serv_sock == -1) {
         error_handling("UDP socket creation error");
