@@ -28,7 +28,7 @@ int main(int argc, char *argv[]) {
         read(fds1[0], buf, BUF_SIZE);
         printf("Parent proc output: %s \n", buf);
         write(fds2[1], str2, sizeof(str2));
-//        sleep(3);
+        sleep(3);
     }
 
     return 0;

@@ -64,7 +64,9 @@ int main(int argc, char *argv[]) {
 
         // only write 10 lines
         for (int i = 0; i < 10; ++i) {
+            // read bytes from pipe fds[0] into buffer
             int len = read(fds[0], msgbuf, BUF_SIZE);
+            // write bytes in buffer to file
             fwrite((void *) msgbuf, 1, len, fp);
         }
         fclose(fp);
