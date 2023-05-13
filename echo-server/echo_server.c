@@ -43,6 +43,7 @@ int main(int argc, char *argv[]) {
     }
 
     clnt_adr_sz = sizeof(clnt_adr);
+
     for (i = 0; i < 5; i++) {
         clnt_sock = accept(serv_sock, (struct sockaddr *) &clnt_adr, &clnt_adr_sz);
         if (clnt_sock == -1) {
